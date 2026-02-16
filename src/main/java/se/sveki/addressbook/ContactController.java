@@ -47,6 +47,11 @@ public class ContactController {
         Contact updated = new Contact(id, firstName, lastName, country, city, streetName, streetNumber);
         db.put(id, updated);
         return updated;
-
     }
+
+    @DeleteMapping("/api/contacts/{id}")
+    public void delete(@PathVariable long id) {
+        db.remove(id);
+    }
+
 }
