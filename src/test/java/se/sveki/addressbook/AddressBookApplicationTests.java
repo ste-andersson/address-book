@@ -1,4 +1,4 @@
-package se.sveki.address_book;
+package se.sveki.addressbook;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
