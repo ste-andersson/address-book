@@ -1,9 +1,6 @@
 package se.sveki.addressbook;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -31,5 +28,10 @@ public class ContactController {
     @GetMapping("/api/contacts")
     public java.util.List<Contact> getAll() {
         return db.values().stream().toList();
+    }
+
+    @GetMapping("api/contacts/{id}")
+    public Contact getOne(@PathVariable long id) {
+        return db.get(id);
     }
 }
