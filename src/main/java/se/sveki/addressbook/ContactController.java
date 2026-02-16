@@ -1,5 +1,6 @@
 package se.sveki.addressbook;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,5 +26,10 @@ public class ContactController {
         Contact created = new Contact(id, firstName, lastName, country, city, streetName, streetNumber);
         db.put(id, created);
         return created;
+    }
+
+    @GetMapping("/api/contacts")
+    public java.util.List<Contact> getAll() {
+        return db.values().stream().toList();
     }
 }
