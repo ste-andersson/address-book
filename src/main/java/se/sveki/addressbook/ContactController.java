@@ -34,4 +34,19 @@ public class ContactController {
     public Contact getOne(@PathVariable long id) {
         return db.get(id);
     }
+
+    @PutMapping("api/contacts/{id}")
+    public Contact update(@PathVariable long id,
+                          @RequestParam String firstName,
+                          @RequestParam String lastName,
+                          @RequestParam String country,
+                          @RequestParam String city,
+                          @RequestParam String streetName,
+                          @RequestParam String streetNumber) {
+
+        Contact updated = new Contact(id, firstName, lastName, country, city, streetName, streetNumber);
+        db.put(id, updated);
+        return updated;
+
+    }
 }
