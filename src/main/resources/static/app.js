@@ -60,3 +60,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadAll();
 });
+
+document.addEventListener("click", function (event) {
+    if (event.target.classList.contains("delete-button")) {
+        const id = event.target.dataset.id;
+
+        fetch(`/api/contacts/${id}`, {
+            method: "DELETE"
+        })
+        .then(() => loadAll());
+    }
+});
