@@ -26,5 +26,37 @@ function loadAll() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    const form = document.querySelector("#contactCreationForm");
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const firstName = document.querySelector("#firstName").value;
+        const lastName = document.querySelector("#lastName").value;
+        const country = document.querySelector("#country").value;
+        const city = document.querySelector("#city").value;
+        const streetName = document.querySelector("#streetName").value;
+        const streetNumber = document.querySelector("#streetNumber").value;
+
+        const params = new URLSearchParams({
+            firstName,
+            lastName,
+            country,
+            city,
+            streetName,
+            streetNumber
+        });
+
+        fetch(`/api/contacts?${params.toString()}`, {
+            method: "POST"
+        })
+        .then(response => response.json())
+        .then(() => {
+            form.reset();
+            loadAll();
+        });
+    });
+
     loadAll();
 });
