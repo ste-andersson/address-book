@@ -10,6 +10,7 @@ function renderContacts(contacts) {
         <td>${contact.streetName} ${contact.streetNumber}</td>
         <td>${contact.city} (${contact.country})</td>
         <td>
+        <button data-id="${contact.id}" class="show-button">Show</button>
         <button data-id="${contact.id}" class="edit-button">Edit</button>
         <button data-id="${contact.id}" class="delete-button">Delete</button>
         </td>
@@ -62,12 +63,36 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("delete-button")) {
-        const id = event.target.dataset.id;
+    const target = event.target;
+
+    if (target.classList.contains("delete-button")) {
+        const id = target.dataset.id;
 
         fetch(`/api/contacts/${id}`, {
             method: "DELETE"
         })
         .then(() => loadAll());
+
+        return;
+    }
+    
+    if (target.classList.contains("show-button")) {
+        const id = target.dataset.id;
+        
+        fetch(`/api/contacts/${id}`)
+        .then(response => response.json())
+        .then(contact => {
+            alert(`
+            DETAILS:
+            First name: ${contact.firstName}
+            Last name: ${contact.lastName}
+            Country: ${contact.country}
+            City: ${contact.city}
+            Street: ${contact.streetName}
+            Street number: ${contact.streetNumber}
+            `);
+        });
+
+        return;
     }
 });
