@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address book</title>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Address book</h1>
+        <form id="contactCreationForm">
+            <label>First name</label>
+            <input id="firstName">
+            <label>Last name</label>
+            <input id="lastName">
+            <label>Country</label>
+            <input id="country">
+            <label>City</label>
+            <input id="city">
+            <label>Street name</label>
+            <input id="streetName">
+            <label>Street number</label>
+            <input id="streetNumber">
+            <button type="submit">Create</button>
+        </form>
+        <div class="table-card">
+            <table id="contactTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Street</th>
+                        <th>City</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="contactTableBody">
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>
