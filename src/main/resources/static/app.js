@@ -49,11 +49,18 @@ document.addEventListener("DOMContentLoaded", () => {
             streetNumber
         });
 
-        fetch(`/api/contacts?${params.toString()}`, {
-            method: "POST"
-        })
+        const editingId = form.dataset.editingId;
+
+        const url = editingId
+        ? `/api/contacts/${editingId}?${params.toString()}`
+        : `/api/contacts?${params.toString()}`;
+
+        const method = editingId ? "PUT" : "POST";
+
+        fetch(url, {method})
         .then(response => response.json())
         .then(() => {
+            delete form.dataset.editingId;
             form.reset();
             loadAll();
         });
@@ -95,4 +102,24 @@ document.addEventListener("click", function (event) {
 
         return;
     }
+
+    if (target.classList.contains("edit-button")) {
+        const id = target.dataset.id;
+
+        fetch(`/api/contacts/${id}`)
+        .then(response => response.json())
+        .then(contact => {
+            document.querySelector("#firstName").value = contact.firstName;
+            document.querySelector("#lastName").value = contact.lastName;
+            document.querySelector("#country").value = contact.country;
+            document.querySelector("#city").value = contact.city;
+            document.querySelector("#streetName").value = contact.streetName;
+            document.querySelector("#streetNumber").value = contact.streetNumber;
+
+            document.querySelector("#contactCreationForm").dataset.editingId = id;
+        });
+
+        return;
+    }
+
 });
