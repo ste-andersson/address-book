@@ -5,51 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Address book</title>
     <script src="app.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <h1>Address book</h1>
-    <form id="contactCreationForm">
-        <div class="form-row">
-        <label>First name</label>
-        <input id="firstName">
+    <main class="container">
+        <h1>Address book</h1>
+        <form id="contactCreationForm">
+            <label>First name</label>
+            <input id="firstName">
+            <label>Last name</label>
+            <input id="lastName">
+            <label>Country</label>
+            <input id="country">
+            <label>City</label>
+            <input id="city">
+            <label>Street name</label>
+            <input id="streetName">
+            <label>Street number</label>
+            <input id="streetNumber">
+            <button type="submit">Create</button>
+        </form>
+        <div class="table-card">
+            <table id="contactTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Street</th>
+                        <th>City</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="contactTableBody">
+                </tbody>
+            </table>
         </div>
-        <div class="form-row">
-        <label>Last name</label>
-        <input id="lastName">
-        </div>
-        <div class="form-row">
-        <label>Country</label>
-        <input id="country">
-        </div>
-        <div class="form-row">
-        <label>City</label>
-        <input id="city">
-        </div>
-        <div class="form-row">
-        <label>Street name</label>
-        <input id="streetName">
-        </div>
-        <div class="form-row">
-        <label>Street number</label>
-        <input id="streetNumber">
-        </div>
-        <button type="submit">Create</button>
-    </form>
-
-    <hr>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Street</th>
-                <th>City</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="contactTableBody">
-        </tbody>
-</table>
+    </main>
 </body>
 </html>
